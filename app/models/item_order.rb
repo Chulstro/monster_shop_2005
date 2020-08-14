@@ -10,6 +10,11 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
+  def fulfill
+    update(status: "fulfilled")
+    item.update_inventory(quantity)
+  end
+
   private
 
   def default_status
